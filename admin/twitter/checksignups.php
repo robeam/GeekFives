@@ -20,32 +20,32 @@
 				$row=mysql_fetch_assoc($res);
 				$name = $row['name'];
 				echo $a, $name;
-				exit;
-				if($a !== $name){
-					mysql_query("INSERT INTO email (name,status) VALUES ('$a','true')");
+				
+				if($a != $name){
+					// mysql_query("INSERT INTO email (name,status) VALUES ('$a','true')");
 					
-					$res=mysql_query("SELECT name FROM email");
-					$playnum = mysql_num_rows($res);
+					// $res=mysql_query("SELECT name FROM email");
+					// $playnum = mysql_num_rows($res);
 
-					if($playnum < 10){
-						$message = '@' . $screen .' your playing, in at number ' . $playnum;
-						$twitter->send($message);	
-					} else {
-						$message = '@' . $screen .' your on the subs bench, in at number ' . $playnum;
-						$twitter->send($message);	
-					}
+					// if($playnum < 10){
+					// 	$message = '@' . $screen .' your playing, in at number ' . $playnum;
+					// 	$twitter->send($message);	
+					// } else {
+					// 	$message = '@' . $screen .' your on the subs bench, in at number ' . $playnum;
+					// 	$twitter->send($message);	
+					// }
 					echo 'in';
 				} else {
-					$message = '@' . $screen .' your already playing sir?';
-					$twitter->send($message);
+					// $message = '@' . $screen .' your already playing sir?';
+					// $twitter->send($message);
 					echo 'dupe';
 				}
     	} else if($con === '#out') {
 				// DELETE a row of information into the Database
-				mysql_query("DELETE FROM email WHERE name = '$a'");
+				//mysql_query("DELETE FROM email WHERE name = '$a'");
 
-				$message = '@' . $screen .' Your out!';
-				$twitter->send($message);
+				// $message = '@' . $screen .' Your out!';
+				// $twitter->send($message);
 				echo 'deleted';
     	}
 	}	

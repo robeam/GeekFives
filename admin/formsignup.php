@@ -36,7 +36,7 @@ else
 			} else if ($playnum == 10){
 				$message = $a .' is in, we have 5 aside this week!';
 				$twitter->send($message);
-			} else if ($playnum > 10 && $playnum !> 12){
+			} else if ($playnum > 10){
 				$message = $a .' is in, we have ' . $playnum . ' players for this weeks game';
 				$twitter->send($message);
 			}	

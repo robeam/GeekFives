@@ -1,5 +1,5 @@
 <?php # Script 14.1 - mysql_connect.php
-$env = 'laptop';
+$env = 'live';
 // This file contains the database access information for the database. 
 // This file also establishes a connection to MySQL and selects the database.
 

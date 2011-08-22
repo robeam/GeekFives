@@ -10,20 +10,7 @@
 <title>Falmouth Fives</title>
 </head>
 <body class="no-js">
-<?php 
-
-include_once ('admin/db-connect.php'); 
-
-require_once 'twitter/twitter.class.php';
-$consumerKey = 'uOBcBmCYY5EVaFnOA8Ing';
-$consumerSecret = '8Zl3k7UnmQaJSXNqIH7Ak9uirZvHZYMxDb6fI9hqx58';
-$accessToken = '345583576-wzlN6lG4yFmAjyTqyVneQpVFoeTbXXLdESoe9nLP';
-$accessTokenSecret = 'faR0Y7tP0zXOp8SzDQaICq5dlTf2dztJNbmis7RoQk';
-
-$twitter = new Twitter($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
-?>
-
-
+<?php include_once ('admin/db-connect.php'); ?>
 <div id="wrapper">
 	<header role="banner">
 		<h1>Falmouth Fives 5-A-Side Football</h1>
@@ -65,6 +52,25 @@ $twitter = new Twitter($consumerKey, $consumerSecret, $accessToken, $accessToken
 			<hr />
 			<ul id="playing">
 				<?php
+					//CHECK TWITTER FOR PLAYERS
+					require_once 'admin/twitter/twitter.class.php';
+					$consumerKey = 'uOBcBmCYY5EVaFnOA8Ing';
+					$consumerSecret = '8Zl3k7UnmQaJSXNqIH7Ak9uirZvHZYMxDb6fI9hqx58';
+					$accessToken = '345583576-wzlN6lG4yFmAjyTqyVneQpVFoeTbXXLdESoe9nLP';
+					$accessTokenSecret = 'faR0Y7tP0zXOp8SzDQaICq5dlTf2dztJNbmis7RoQk';
+					$twitter = new Twitter($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
+
+					$channel = $twitter->load(Twitter::REPLIES);
+					foreach ($channel->status as $status) {
+						$con = strstr($status->text, '#');
+						$from = strstr($status->text, '@');
+						echo $status;
+	                	if($con === '#playing'){
+	                		
+	                	}
+	       			}	
+				?>
+				<?php
 					$res=mysql_query("SELECT name,status FROM email");
 					$n = mysql_num_rows($res);
 					$i = 1;
@@ -86,7 +92,8 @@ $twitter = new Twitter($consumerKey, $consumerSecret, $accessToken, $accessToken
 					}
 	 			?>
 			</ul>
-
+			<hr />
+			<em>Follow <a href="http://twitter.com/@falmouthfives">@falmouthfives</a></em>
 			<hr />
 		</section>
 
